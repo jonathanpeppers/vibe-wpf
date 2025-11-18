@@ -283,27 +283,57 @@
                                 </Grid>
 
                                 <!-- Game Info Card -->
-                                <Border Background="#1C2127" CornerRadius="8" Width="220" Height="250"
+                                <Border CornerRadius="8" Width="240" Height="260"
                                       HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0"
-                                      Padding="15">
+                                      Padding="20">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                            <GradientStop Color="#8B6914" Offset="0"/>
+                                            <GradientStop Color="#6B4423" Offset="0.5"/>
+                                            <GradientStop Color="#4A2F1A" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
                                     <StackPanel>
-                                        <TextBlock Text="Stray" FontSize="24" FontWeight="Bold" Foreground="White" Margin="0,0,0,10"/>
-                                        <TextBlock Text="Lost, alone and separated from family, a stray cat must untangle an ancient mystery to escape a long-forgotten cyberpunk city and find their way home." 
-                                                 TextWrapping="Wrap" Foreground="#8B9BB4" FontSize="11" Margin="0,0,0,15"/>
-                                        <TextBlock Text="$16.99 USD" FontSize="18" Foreground="#ACDBDF" FontWeight="Bold" Margin="0,0,0,10"/>
-                                        <Button Background="#5C7E10" Foreground="White" 
-                                              BorderThickness="0" Padding="12,10" FontWeight="Bold" Cursor="Hand" Height="36">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="Available now" VerticalAlignment="Center"/>
-                                                <TextBlock Text=" ⊞" VerticalAlignment="Center" FontSize="14" Margin="5,0,0,0"/>
-                                            </StackPanel>
+                                        <TextBlock Text="Stray" FontSize="26" FontWeight="Bold" Foreground="White" Margin="0,0,0,8"/>
+                                        <TextBlock Text="Lost, alone and separated from family, a stray cat must untangle an ancient mystery to escape a long-forgotten cybercity and find their way home." 
+                                                 TextWrapping="Wrap" Foreground="#E0E0E0" FontSize="11" Margin="0,0,0,18" LineHeight="16"/>
+                                        <TextBlock Text="$16.99 USD" FontSize="16" Foreground="White" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                                        <Button Foreground="White" 
+                                              BorderThickness="0" Padding="0" FontWeight="SemiBold" Cursor="Hand" 
+                                              Height="36" HorizontalContentAlignment="Stretch">
+                                            <Button.Background>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                    <GradientStop Color="#8B6914" Offset="0"/>
+                                                    <GradientStop Color="#6B4423" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </Button.Background>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}" 
+                                                            CornerRadius="4"
+                                                            Padding="{TemplateBinding Padding}">
+                                                        <Grid Margin="12,0">
+                                                            <TextBlock Text="Available now" 
+                                                                     Foreground="{TemplateBinding Foreground}"
+                                                                     FontWeight="{TemplateBinding FontWeight}"
+                                                                     VerticalAlignment="Center"
+                                                                     HorizontalAlignment="Left"/>
+                                                            <TextBlock Text="⊞" 
+                                                                     Foreground="{TemplateBinding Foreground}"
+                                                                     FontSize="16"
+                                                                     VerticalAlignment="Center"
+                                                                     HorizontalAlignment="Right"/>
+                                                        </Grid>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
                                         </Button>
                                         
                                         <!-- Thumbnail Images -->
-                                        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                                            <Border Width="60" Height="35" Background="#6B4423" CornerRadius="2" Margin="2"/>
-                                            <Border Width="60" Height="35" Background="#8B6914" CornerRadius="2" Margin="2"/>
-                                            <Border Width="60" Height="35" Background="#CD853F" CornerRadius="2" Margin="2"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,15,0,0" HorizontalAlignment="Center">
+                                            <Border Width="65" Height="38" Background="#5A4020" CornerRadius="3" Margin="2"/>
+                                            <Border Width="65" Height="38" Background="#6B4423" CornerRadius="3" Margin="2"/>
+                                            <Border Width="65" Height="38" Background="#7A5030" CornerRadius="3" Margin="2"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </Border>
