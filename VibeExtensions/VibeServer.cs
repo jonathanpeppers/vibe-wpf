@@ -16,26 +16,39 @@ public static class VibeServer
         _server.Prefixes.Add("http://localhost:5010/ui/");
         _server.Start();
 
-        Task.Run(() =>
+        Task.Run(async () =>
         {
             while (_server.IsListening)
             {
+                HttpListenerContext? ctx = null;
                 try
                 {
-                    var ctx = _server.GetContext();
-                    var bmp = CaptureMainWindowAsBitmap();
-                    using var ms = new MemoryStream();
-                    var encoder = new PngBitmapEncoder();
-                    encoder.Frames.Add(BitmapFrame.Create(bmp));
-                    encoder.Save(ms);
-
+                    ctx = await _server.GetContextAsync();
+                    Console.WriteLine("Request received");
+                    
+                    var data = await CaptureMainWindowAsPngAsync();
+                    Console.WriteLine($"Encoded {data.Length} bytes");
+                    
                     ctx.Response.ContentType = "image/png";
-                    ctx.Response.OutputStream.Write(ms.ToArray());
-                    ctx.Response.OutputStream.Close();
+                    ctx.Response.ContentLength64 = data.Length;
+                    ctx.Response.StatusCode = 200;
+                    
+                    await ctx.Response.OutputStream.WriteAsync(data, 0, data.Length);
+                    ctx.Response.Close();
+                    Console.WriteLine("Response sent");
                 }
-                catch
+                catch (Exception ex)
                 {
-                    // Handle errors gracefully
+                    Console.WriteLine($"VibeServer error: {ex}");
+                    if (ctx != null)
+                    {
+                        try
+                        {
+                            ctx.Response.StatusCode = 500;
+                            ctx.Response.Close();
+                        }
+                        catch { }
+                    }
                 }
             }
         });
@@ -47,30 +60,54 @@ public static class VibeServer
         _server?.Close();
     }
 
-    private static BitmapSource CaptureMainWindowAsBitmap()
+    private static async Task<byte[]> CaptureMainWindowAsPngAsync()
     {
-        BitmapSource? bitmap = null;
+        var tcs = new TaskCompletionSource<byte[]>();
 
-        Application.Current.Dispatcher.Invoke(() =>
+        _ = Application.Current.Dispatcher.BeginInvoke(() =>
         {
-            var mainWindow = Application.Current.MainWindow;
-            if (mainWindow != null)
+            try
             {
-                var width = (int)mainWindow.ActualWidth;
-                var height = (int)mainWindow.ActualHeight;
+                var mainWindow = Application.Current.MainWindow;
+                if (mainWindow != null)
+                {
+                    var width = (int)mainWindow.ActualWidth;
+                    var height = (int)mainWindow.ActualHeight;
 
-                var renderBitmap = new RenderTargetBitmap(
-                    width,
-                    height,
-                    96,
-                    96,
-                    PixelFormats.Pbgra32);
+                    var renderBitmap = new RenderTargetBitmap(
+                        width,
+                        height,
+                        96,
+                        96,
+                        PixelFormats.Pbgra32);
 
-                renderBitmap.Render(mainWindow);
-                bitmap = renderBitmap;
+                    renderBitmap.Render(mainWindow);
+                    
+                    // Encode to PNG on the UI thread
+                    using var ms = new MemoryStream();
+                    var encoder = new PngBitmapEncoder();
+                    encoder.Frames.Add(BitmapFrame.Create(renderBitmap));
+                    encoder.Save(ms);
+                    
+                    tcs.SetResult(ms.ToArray());
+                }
+                else
+                {
+                    // Return a minimal 1x1 PNG
+                    var bmp = BitmapSource.Create(1, 1, 96, 96, PixelFormats.Pbgra32, null, new byte[4], 4);
+                    using var ms = new MemoryStream();
+                    var encoder = new PngBitmapEncoder();
+                    encoder.Frames.Add(BitmapFrame.Create(bmp));
+                    encoder.Save(ms);
+                    tcs.SetResult(ms.ToArray());
+                }
+            }
+            catch (Exception ex)
+            {
+                tcs.SetException(ex);
             }
         });
 
-        return bitmap ?? BitmapSource.Create(1, 1, 96, 96, PixelFormats.Pbgra32, null, new byte[4], 4);
+        return await tcs.Task;
     }
 }
