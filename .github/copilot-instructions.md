@@ -29,13 +29,19 @@ While the app is running, use `get-vibe.ps1` to inspect the UI:
 # or simply
 .\get-vibe.ps1
 ```
-Captures the current UI as PNG, saves with timestamp, and opens it.
+Captures the current UI as PNG, saves with timestamp to `screenshots/` folder, and opens it.
 
 ### Get Visual Tree
 ```powershell
 .\get-vibe.ps1 tree
 ```
 Outputs the complete WPF visual tree as formatted JSON to console, showing element types, names, and hierarchy.
+
+### Restart Application
+```powershell
+.\get-vibe.ps1 restart
+```
+Triggers `dotnet watch` to restart the application (equivalent to pressing Ctrl+R in the watch terminal). Useful for applying XAML changes that don't hot reload automatically.
 
 ## Development Workflow for AI Assistants
 
@@ -50,11 +56,20 @@ When iterating on WPF UI:
 
 2. **Make changes** to XAML or C# files (in your editor, not the terminal)
 
-3. **Capture results** using get-vibe.ps1 (from a different terminal):
+3. **Restart and capture results** using get-vibe.ps1 (from a different terminal):
+   - `.\get-vibe.ps1 restart` - Restart the app to apply XAML changes (WPF hot reload is limited)
+   - Wait 2-3 seconds for restart to complete
    - `.\get-vibe.ps1 ui` - Verify visual appearance
    - `.\get-vibe.ps1 tree` - Inspect element structure and naming
+   
+   **Quick iteration**: Combine commands to restart and capture in one line:
+   ```powershell
+   .\get-vibe.ps1 restart; Start-Sleep -Seconds 3; .\get-vibe.ps1 ui
+   ```
 
-4. **Iterate** - Changes trigger automatic rebuild/restart via dotnet watch
+4. **Iterate** - Make changes, restart with `.\get-vibe.ps1 restart`, and capture screenshots
+
+**Note on Hot Reload**: WPF XAML hot reload is limited and often requires a restart for changes to apply. The `restart` command automates this instead of manually pressing Ctrl+R in the watch terminal.
 
 This enables rapid feedback loops without manual restarts.
 

@@ -1,9 +1,9 @@
 # PowerShell script to test the screenshot server
-# Usage: .\test-screenshot.ps1 [ui|tree]
+# Usage: .\get-vibe.ps1 [ui|tree|restart]
 # Default: ui
 
 param(
-    [ValidateSet("ui", "tree")]
+    [ValidateSet("ui", "tree", "restart")]
     [string]$Mode = "ui"
 )
 
@@ -49,5 +49,20 @@ elseif ($Mode -eq "tree") {
     catch {
         Write-Host "Error: $_" -ForegroundColor Red
         Write-Host "Make sure the WPF application with VibeServer is running!" -ForegroundColor Yellow
+    }
+}
+elseif ($Mode -eq "restart") {
+    Write-Host "Triggering app restart via dotnet watch..." -ForegroundColor Cyan
+    
+    try {
+        # Call the restart endpoint to shutdown the app
+        $response = Invoke-WebRequest -Uri "http://localhost:5010/restart/" -Method Get -TimeoutSec 2
+        
+        Write-Host "App shutdown triggered! dotnet watch will restart it automatically." -ForegroundColor Green
+        Write-Host "Watch for 'Started' message in the dotnet watch terminal." -ForegroundColor Yellow
+    }
+    catch {
+        Write-Host "Error: Could not connect to the running app." -ForegroundColor Red
+        Write-Host "Make sure the WPF application is running with 'dotnet watch run'" -ForegroundColor Yellow
     }
 }

@@ -17,6 +17,7 @@ public static class VibeServer
         _server = new HttpListener();
         _server.Prefixes.Add("http://localhost:5010/ui/");
         _server.Prefixes.Add("http://localhost:5010/tree/");
+        _server.Prefixes.Add("http://localhost:5010/restart/");
         _server.Start();
 
         Task.Run(async () =>
@@ -42,6 +43,26 @@ public static class VibeServer
                         
                         await ctx.Response.OutputStream.WriteAsync(data, 0, data.Length);
                         ctx.Response.Close();
+                    }
+                    else if (path.StartsWith("/restart"))
+                    {
+                        Console.WriteLine("Restart requested - shutting down app");
+                        
+                        var response = "{\"status\":\"restarting\"}";
+                        var data = Encoding.UTF8.GetBytes(response);
+                        
+                        ctx.Response.ContentType = "application/json";
+                        ctx.Response.ContentLength64 = data.Length;
+                        ctx.Response.StatusCode = 200;
+                        
+                        await ctx.Response.OutputStream.WriteAsync(data, 0, data.Length);
+                        ctx.Response.Close();
+                        
+                        // Shutdown the app on the UI thread
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            Application.Current.Shutdown();
+                        });
                     }
                     else // /ui endpoint
                     {
