@@ -90,29 +90,29 @@
                 
                 <Button Margin="10,5" Padding="15,8" HorizontalContentAlignment="Left" Background="#3D5568" BorderThickness="0" Foreground="White" FontWeight="SemiBold">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="🎮" FontSize="16" Margin="0,0,10,0"/>
-                        <TextBlock Text="Game store"/>
+                        <TextBlock Text="🎮" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Game store" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
                 
                 <Button Margin="10,5" Padding="15,8" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Foreground="#8B9BB4" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="📚" FontSize="16" Margin="0,0,10,0"/>
-                        <TextBlock Text="Library"/>
+                        <TextBlock Text="📚" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Library" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
                 
                 <Button Margin="10,5" Padding="15,8" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Foreground="#8B9BB4" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="👥" FontSize="16" Margin="0,0,10,0"/>
-                        <TextBlock Text="Community"/>
+                        <TextBlock Text="👥" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Community" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
                 
                 <Button Margin="10,5" Padding="15,8" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Foreground="#8B9BB4" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="👤" FontSize="16" Margin="0,0,10,0"/>
-                        <TextBlock Text="Friends"/>
+                        <TextBlock Text="👤" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Friends" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
             </StackPanel>
@@ -121,15 +121,15 @@
             <StackPanel Grid.Row="2" Margin="0,0,0,20">
                 <Button Margin="10,5" Padding="15,8" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Foreground="#8B9BB4" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="⚙️" FontSize="16" Margin="0,0,10,0"/>
-                        <TextBlock Text="Settings"/>
+                        <TextBlock Text="⚙️" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Settings" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
                 
                 <Button Margin="10,5" Padding="15,8" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Foreground="#8B9BB4" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="❓" FontSize="16" Margin="0,0,10,0"/>
-                        <TextBlock Text="Help"/>
+                        <TextBlock Text="❓" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Help" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
                 
