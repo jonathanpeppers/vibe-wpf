@@ -55,11 +55,20 @@ elseif ($Mode -eq "restart") {
     Write-Host "Triggering app restart via dotnet watch..." -ForegroundColor Cyan
     
     try {
-        # Call the restart endpoint to shutdown the app
+        # Call the restart endpoint to shutdown the app gracefully
         $response = Invoke-WebRequest -Uri "http://localhost:5010/restart/" -Method Get -TimeoutSec 2
         
-        Write-Host "App shutdown triggered! dotnet watch will restart it automatically." -ForegroundColor Green
-        Write-Host "Watch for 'Started' message in the dotnet watch terminal." -ForegroundColor Yellow
+        Write-Host "App shutdown triggered!" -ForegroundColor Green
+        
+        # Give app time to close
+        Start-Sleep -Milliseconds 500
+        
+        # Touch a file to trigger dotnet watch rebuild and restart
+        $triggerFile = "MyWpfApp\App.xaml.cs"
+        if (Test-Path $triggerFile) {
+            (Get-Item $triggerFile).LastWriteTime = Get-Date
+            Write-Host "File change detected - dotnet watch will now restart the app." -ForegroundColor Green
+        }
     }
     catch {
         Write-Host "Error: Could not connect to the running app." -ForegroundColor Red
