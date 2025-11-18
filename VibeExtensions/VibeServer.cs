@@ -1,5 +1,7 @@
 ﻿using System.IO;
 using System.Net;
+using System.Text;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -14,6 +16,7 @@ public static class VibeServer
     {
         _server = new HttpListener();
         _server.Prefixes.Add("http://localhost:5010/ui/");
+        _server.Prefixes.Add("http://localhost:5010/tree/");
         _server.Start();
 
         Task.Run(async () =>
@@ -24,17 +27,34 @@ public static class VibeServer
                 try
                 {
                     ctx = await _server.GetContextAsync();
-                    Console.WriteLine("Request received");
+                    var path = ctx.Request.Url?.AbsolutePath ?? "";
+                    Console.WriteLine($"Request received: {path}");
                     
-                    var data = await CaptureMainWindowAsPngAsync();
-                    Console.WriteLine($"Encoded {data.Length} bytes");
-                    
-                    ctx.Response.ContentType = "image/png";
-                    ctx.Response.ContentLength64 = data.Length;
-                    ctx.Response.StatusCode = 200;
-                    
-                    await ctx.Response.OutputStream.WriteAsync(data, 0, data.Length);
-                    ctx.Response.Close();
+                    if (path.StartsWith("/tree"))
+                    {
+                        var json = await GetVisualTreeAsJsonAsync();
+                        var data = Encoding.UTF8.GetBytes(json);
+                        Console.WriteLine($"Sending tree JSON: {data.Length} bytes");
+                        
+                        ctx.Response.ContentType = "application/json";
+                        ctx.Response.ContentLength64 = data.Length;
+                        ctx.Response.StatusCode = 200;
+                        
+                        await ctx.Response.OutputStream.WriteAsync(data, 0, data.Length);
+                        ctx.Response.Close();
+                    }
+                    else // /ui endpoint
+                    {
+                        var data = await CaptureMainWindowAsPngAsync();
+                        Console.WriteLine($"Encoded {data.Length} bytes");
+                        
+                        ctx.Response.ContentType = "image/png";
+                        ctx.Response.ContentLength64 = data.Length;
+                        ctx.Response.StatusCode = 200;
+                        
+                        await ctx.Response.OutputStream.WriteAsync(data, 0, data.Length);
+                        ctx.Response.Close();
+                    }
                     Console.WriteLine("Response sent");
                 }
                 catch (Exception ex)
@@ -109,5 +129,50 @@ public static class VibeServer
         });
 
         return await tcs.Task;
+    }
+
+    public record Node(string Type, string? Name, List<Node> Children);
+
+    private static async Task<string> GetVisualTreeAsJsonAsync()
+    {
+        var tcs = new TaskCompletionSource<string>();
+
+        _ = Application.Current.Dispatcher.BeginInvoke(() =>
+        {
+            try
+            {
+                var mainWindow = Application.Current.MainWindow;
+                if (mainWindow != null)
+                {
+                    var tree = BuildTree(mainWindow);
+                    var json = JsonSerializer.Serialize(tree, new JsonSerializerOptions { WriteIndented = true });
+                    tcs.SetResult(json);
+                }
+                else
+                {
+                    tcs.SetResult("{}");
+                }
+            }
+            catch (Exception ex)
+            {
+                tcs.SetException(ex);
+            }
+        });
+
+        return await tcs.Task;
+    }
+
+    private static Node BuildTree(DependencyObject root)
+    {
+        var n = new Node(root.GetType().Name,
+                         (root as FrameworkElement)?.Name,
+                         new List<Node>());
+
+        int count = VisualTreeHelper.GetChildrenCount(root);
+        for (int i = 0; i < count; i++)
+        {
+            n.Children.Add(BuildTree(VisualTreeHelper.GetChild(root, i)));
+        }
+        return n;
     }
 }
