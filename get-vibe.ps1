@@ -14,9 +14,15 @@ if ($Mode -eq "ui") {
         # Make the HTTP request
         $response = Invoke-WebRequest -Uri "http://localhost:5010/ui/" -Method Get
         
+        # Ensure screenshots directory exists
+        $screenshotsDir = "screenshots"
+        if (-not (Test-Path $screenshotsDir)) {
+            New-Item -ItemType Directory -Path $screenshotsDir | Out-Null
+        }
+        
         # Save the image to a file
         $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
-        $outputFile = "screenshot_$timestamp.png"
+        $outputFile = Join-Path $screenshotsDir "screenshot_$timestamp.png"
         [System.IO.File]::WriteAllBytes($outputFile, $response.Content)
         
         Write-Host "Screenshot saved to: $outputFile" -ForegroundColor Green
