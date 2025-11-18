@@ -6,7 +6,14 @@
         xmlns:local="clr-namespace:MyWpfApp"
         mc:Ignorable="d"
         Title="Steam" Height="850" Width="1400" 
-        Background="#1B2838" WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#2D3E50" Offset="0"/>
+            <GradientStop Color="#232D3A" Offset="0.5"/>
+            <GradientStop Color="#1A1F27" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
     
     <Window.Resources>
         <!-- Button Style -->
@@ -25,28 +32,39 @@
         </Style>
         
         <Style x:Key="CategoryButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#67707B"/>
+            <Setter Property="Background" Value="#AA000000"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="12,6"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Margin" Value="5,0"/>
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="12" 
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#8B929A"/>
+                    <Setter Property="Background" Value="#CC000000"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
         <Style x:Key="GameCardStyle" TargetType="Border">
-            <Setter Property="Background" Value="#16202D"/>
+            <Setter Property="Background" Value="#1C2127"/>
             <Setter Property="CornerRadius" Value="4"/>
             <Setter Property="Margin" Value="8"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#1E2D3F"/>
+                    <Setter Property="Background" Value="#252932"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -59,7 +77,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- Left Sidebar -->
-        <Grid Grid.Column="0" Background="#171A21">
+        <Grid Grid.Column="0" Background="#1C1E24">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -115,7 +133,7 @@
                     </StackPanel>
                 </Button>
                 
-                <Border Background="#1E2936" CornerRadius="4" Padding="12,10" Margin="10,10" Cursor="Hand">
+                <Border Background="#252932" CornerRadius="8" Padding="12,10" Margin="10,10" Cursor="Hand">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Border Width="8" Height="8" CornerRadius="4" Background="#5C7E10" VerticalAlignment="Center" Margin="0,0,8,0"/>
@@ -131,14 +149,14 @@
         </Grid>
 
         <!-- Main Content -->
-        <Grid Grid.Column="1" Background="#1B2838">
+        <Grid Grid.Column="1" Background="Transparent">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
             <!-- Top Bar with Search and User -->
-            <Grid Grid.Row="0" Background="#1B2838" Height="60">
+            <Grid Grid.Row="0" Background="Transparent" Height="60">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0">
                     <Border Background="#2A3F5F" CornerRadius="3" Padding="10,5" Width="280">
                         <TextBlock Text="🔍 Search orders" Foreground="#8B9BB4" VerticalAlignment="Center"/>
@@ -175,10 +193,18 @@
         
         <!-- Main Content Scroll -->
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" 
-                     Background="#1B2838" Padding="20,20,20,0">
+                     Background="Transparent" Padding="20,20,20,0">
             <StackPanel>
                 <!-- Featured Game Section -->
-                <Border Background="#2A475E" CornerRadius="4" Margin="0,0,0,15" Height="320">
+                <Border CornerRadius="8" Margin="0,0,0,15" Height="320">
+                    <Border.Background>
+                        <RadialGradientBrush Center="0.5,0.5" RadiusX="0.8" RadiusY="0.8">
+                            <GradientStop Color="#8B4513" Offset="0"/>
+                            <GradientStop Color="#B8860B" Offset="0.3"/>
+                            <GradientStop Color="#CD853F" Offset="0.6"/>
+                            <GradientStop Color="#8B6914" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Border.Background>
                     <Border.Effect>
                         <DropShadowEffect Color="Black" ShadowDepth="3" BlurRadius="15" Opacity="0.5"/>
                     </Border.Effect>
@@ -257,7 +283,7 @@
                                 </Grid>
 
                                 <!-- Game Info Card -->
-                                <Border Background="#1B2838" CornerRadius="4" Width="220" Height="250"
+                                <Border Background="#1C2127" CornerRadius="8" Width="220" Height="250"
                                       HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0"
                                       Padding="15">
                                     <StackPanel>
@@ -295,12 +321,19 @@
                 </Grid>
 
                 <!-- Game Cards Grid -->
-                <UniformGrid Columns="4" Margin="0,10,0,0">
-                    <!-- Hogwarts Legacy -->
-                    <Border Style="{StaticResource GameCardStyle}">
-                        <Grid Height="200">
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!-- Hogwarts Legacy - 2x wide -->
+                    <Border Grid.Column="0" Style="{StaticResource GameCardStyle}" CornerRadius="8">
+                        <Grid Height="280">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="160"/>
+                                <RowDefinition Height="230"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Border Grid.Row="0" CornerRadius="4,4,0,0">
@@ -324,10 +357,10 @@
                     </Border>
 
                     <!-- Call of Duty -->
-                    <Border Style="{StaticResource GameCardStyle}">
-                        <Grid Height="200">
+                    <Border Grid.Column="1" Style="{StaticResource GameCardStyle}" CornerRadius="8">
+                        <Grid Height="280">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="130"/>
+                                <RowDefinition Height="230"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Border Grid.Row="0" CornerRadius="4,4,0,0">
@@ -356,10 +389,10 @@
                     </Border>
 
                     <!-- FIFA 23 -->
-                    <Border Style="{StaticResource GameCardStyle}">
-                        <Grid Height="200">
+                    <Border Grid.Column="2" Style="{StaticResource GameCardStyle}" CornerRadius="8">
+                        <Grid Height="280">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="130"/>
+                                <RowDefinition Height="230"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Border Grid.Row="0" CornerRadius="4,4,0,0">
@@ -380,10 +413,10 @@
                     </Border>
 
                     <!-- Mass Effect Andromeda -->
-                    <Border Style="{StaticResource GameCardStyle}">
-                        <Grid Height="200">
+                    <Border Grid.Column="3" Style="{StaticResource GameCardStyle}" CornerRadius="8">
+                        <Grid Height="280">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="130"/>
+                                <RowDefinition Height="230"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Border Grid.Row="0" CornerRadius="4,4,0,0">
@@ -402,7 +435,7 @@
                             </StackPanel>
                         </Grid>
                     </Border>
-                </UniformGrid>
+                </Grid>
             </StackPanel>
         </ScrollViewer>
         </Grid>
