@@ -41,15 +41,16 @@ Outputs the complete WPF visual tree as formatted JSON to console, showing eleme
 
 When iterating on WPF UI:
 
-1. **Start watch mode** (runs in background):
+1. **Start watch mode in a background terminal** (leave it running):
    ```powershell
    cd MyWpfApp
    dotnet watch run
    ```
+   This terminal should remain open and running throughout your development session. The app will stay open and automatically rebuild/restart when files change.
 
-2. **Make changes** to XAML or C# files
+2. **Make changes** to XAML or C# files (in your editor, not the terminal)
 
-3. **Capture results** using get-vibe.ps1:
+3. **Capture results** using get-vibe.ps1 (from a different terminal):
    - `.\get-vibe.ps1 ui` - Verify visual appearance
    - `.\get-vibe.ps1 tree` - Inspect element structure and naming
 
