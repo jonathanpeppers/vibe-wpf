@@ -112,7 +112,7 @@
 
         <!-- Main Content -->
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" 
-                     Background="#1B2838" Padding="20">
+                     Background="#1B2838" Padding="20,20,20,0">
             <StackPanel>
                 <!-- Featured Game Section -->
                 <Border Background="#2A475E" CornerRadius="4" Margin="0,0,0,20" Height="400">
