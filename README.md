@@ -37,11 +37,17 @@ This project demonstrates rapid UI iteration using GitHub Copilot and automated 
 
 *Adjusting proportions and styling to match the design reference*
 
-### Iteration 4: Final Polish
+### Iteration 4: More Polish
 
 ![Iteration 4](docs/iteration04.png)
 
-*Fine-tuning content sizing and achieving the target design*
+*Fine-tuning content sizing and layout proportions*
+
+### Iteration 5: Color Refinement
+
+![Iteration 5](docs/iteration05.png)
+
+*Adjusting color scheme to match the design reference*
 
 The workflow combines:
 
