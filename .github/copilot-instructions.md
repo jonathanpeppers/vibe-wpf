@@ -47,29 +47,39 @@ Triggers `dotnet watch` to restart the application (equivalent to pressing Ctrl+
 
 When iterating on WPF UI:
 
-1. **Start watch mode in a background terminal** (leave it running):
-   ```powershell
-   cd MyWpfApp
-   dotnet watch run
-   ```
-   This terminal should remain open and running throughout your development session. The app will stay open and automatically rebuild/restart when files change.
+1. **Start the application**:
+   - **In Visual Studio**: Run with F5 (hot reload works automatically)
+   - **Using dotnet watch**: Run in a background terminal (leave it running):
+     ```powershell
+     cd MyWpfApp
+     dotnet watch run
+     ```
+     This terminal should remain open and running throughout your development session. The app will stay open and automatically rebuild/restart when files change.
 
 2. **Make changes** to XAML or C# files (in your editor, not the terminal)
 
-3. **Restart and capture results** using get-vibe.ps1 (from a different terminal):
-   - `.\get-vibe.ps1 restart` - Restart the app to apply XAML changes (WPF hot reload is limited)
-   - Wait 2-3 seconds for restart to complete
-   - `.\get-vibe.ps1 ui` - Verify visual appearance
-   - `.\get-vibe.ps1 tree` - Inspect element structure and naming
+3. **Apply changes and capture results**:
+   - **In Visual Studio**: 
+     - XAML changes apply automatically via hot reload (no restart needed)
+     - Use `.\get-vibe.ps1 ui` to capture screenshots
+     - Use `.\get-vibe.ps1 tree` to inspect element structure
    
-   **Quick iteration**: Combine commands to restart and capture in one line:
-   ```powershell
-   .\get-vibe.ps1 restart; Start-Sleep -Seconds 3; .\get-vibe.ps1 ui
-   ```
+   - **Using dotnet watch**:
+     - `.\get-vibe.ps1 restart` - Restart the app to apply XAML changes (WPF hot reload is limited in dotnet watch)
+     - Wait 2-3 seconds for restart to complete
+     - `.\get-vibe.ps1 ui` - Verify visual appearance
+     - `.\get-vibe.ps1 tree` - Inspect element structure and naming
+     
+     **Quick iteration**: Combine commands to restart and capture in one line:
+     ```powershell
+     .\get-vibe.ps1 restart; Start-Sleep -Seconds 3; .\get-vibe.ps1 ui
+     ```
 
-4. **Iterate** - Make changes, restart with `.\get-vibe.ps1 restart`, and capture screenshots
+4. **Iterate** - Make changes and capture screenshots to verify
 
-**Note on Hot Reload**: WPF XAML hot reload is limited and often requires a restart for changes to apply. The `restart` command automates this instead of manually pressing Ctrl+R in the watch terminal.
+**Note on Hot Reload**: 
+- **Visual Studio**: Hot reload works well for XAML changes when running with F5. No restart needed.
+- **dotnet watch**: WPF XAML hot reload is limited and often requires a restart via `.\get-vibe.ps1 restart` instead of manually pressing Ctrl+R in the watch terminal.
 
 This enables rapid feedback loops without manual restarts.
 
