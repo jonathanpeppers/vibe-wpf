@@ -49,6 +49,12 @@ This project demonstrates rapid UI iteration using GitHub Copilot and automated 
 
 *Adjusting color scheme to match the design reference*
 
+### Design Reference
+
+![Design Reference](docs/reference.png)
+
+*Original Steam Desktop App Redesign by Juxtopposed - the target design we're implementing*
+
 The workflow combines:
 
 1. Natural language requests to Copilot ("make the featured card wider")
