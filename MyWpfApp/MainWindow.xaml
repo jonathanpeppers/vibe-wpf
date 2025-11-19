@@ -9,9 +9,9 @@
         WindowStartupLocation="CenterScreen">
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-            <GradientStop Color="#29151E" Offset="0"/>
-            <GradientStop Color="#1A1420" Offset="0.5"/>
-            <GradientStop Color="#111921" Offset="1"/>
+            <GradientStop Color="#1B2838" Offset="0"/>
+            <GradientStop Color="#2A475E" Offset="0.5"/>
+            <GradientStop Color="#1B2838" Offset="1"/>
         </LinearGradientBrush>
     </Window.Background>
     
@@ -59,13 +59,13 @@
         </Style>
 
         <Style x:Key="GameCardStyle" TargetType="Border">
-            <Setter Property="Background" Value="#0D0F14"/>
+            <Setter Property="Background" Value="#171A21"/>
             <Setter Property="CornerRadius" Value="4"/>
             <Setter Property="Margin" Value="8"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#15171F"/>
+                    <Setter Property="Background" Value="#1F252E"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -141,7 +141,7 @@
                     </StackPanel>
                 </Button>
                 
-                <Border Background="#0F1419" CornerRadius="8" Padding="12,10" Margin="10,10" Cursor="Hand">
+                <Border Background="#171A21" CornerRadius="8" Padding="12,10" Margin="10,10" Cursor="Hand">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Border Width="8" Height="8" CornerRadius="4" Background="#FF8833" VerticalAlignment="Center" Margin="0,0,8,0"/>
@@ -166,7 +166,7 @@
             <!-- Top Bar with Search and User -->
             <Grid Grid.Row="0" Background="Transparent" Height="60">
                 <!-- Search Box (Center Left) -->
-                <Border Background="#0E1218" CornerRadius="3" Padding="12,8" Width="360" 
+                <Border Background="#17212B" CornerRadius="3" Padding="12,8" Width="360" 
                         HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="🔍" FontSize="14" Foreground="#5C6573" VerticalAlignment="Center" Margin="0,0,8,0"/>
