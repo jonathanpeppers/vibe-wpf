@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MyWpfApp"
         mc:Ignorable="d"
         Title="Steam" Height="768" Width="1024" 
-        Background="#1B2838">
+        Background="#14181D">
     
     <Window.Resources>
         <!-- Button Style for Navigation -->
