@@ -19,36 +19,6 @@ The UI design is based on the [Steam Desktop App Redesign](https://dribbble.com/
 
 This project demonstrates rapid UI iteration using GitHub Copilot and automated visual feedback. Here's how the Steam Store mockup evolved through iterative development:
 
-### Iteration 1: Initial Layout
-
-![Iteration 1](docs/iteration01.png)
-
-*Starting with basic structure and layout*
-
-### Iteration 2: Adding Content
-
-![Iteration 2](docs/iteration02.png)
-
-*Integrating game images and refining the grid structure*
-
-### Iteration 3: Design Refinement
-
-![Iteration 3](docs/iteration03.png)
-
-*Adjusting proportions and styling to match the design reference*
-
-### Iteration 4: More Polish
-
-![Iteration 4](docs/iteration04.png)
-
-*Fine-tuning content sizing and layout proportions*
-
-### Iteration 5: Color Refinement
-
-![Iteration 5](docs/iteration05.png)
-
-*Adjusting color scheme to match the design reference*
-
 ### Design Reference
 
 ![Design Reference](docs/reference.png)
