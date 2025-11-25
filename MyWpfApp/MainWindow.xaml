@@ -190,11 +190,31 @@
                             </Grid>
 
                             <!-- Game Info Panel -->
-                            <Border Grid.Column="1" Background="#4A3520" Margin="10" CornerRadius="12" Padding="15">
+                            <Border Grid.Column="1" Margin="10" CornerRadius="12" Padding="15">
+                                <Border.Background>
+                                    <RadialGradientBrush Center="0.3,0.3" GradientOrigin="0.3,0.3">
+                                        <GradientStop Color="#DA8E18" Offset="0"/>
+                                        <GradientStop Color="#E50308" Offset="0.4"/>
+                                        <GradientStop Color="#2D1B1D" Offset="1"/>
+                                    </RadialGradientBrush>
+                                </Border.Background>
+                                <Border.OpacityMask>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="White" Offset="0"/>
+                                        <GradientStop Color="White" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.OpacityMask>
+                                <Grid>
+                                    <Grid.Background>
+                                        <RadialGradientBrush Center="0.7,0.7" GradientOrigin="0.7,0.7" Opacity="0.5">
+                                            <GradientStop Color="#DA8E18" Offset="0"/>
+                                            <GradientStop Color="Transparent" Offset="0.6"/>
+                                        </RadialGradientBrush>
+                                    </Grid.Background>
                                 <StackPanel>
                                     <TextBlock Text="Stray" FontSize="24" FontWeight="Bold" Foreground="White" Margin="0,0,0,8"/>
                                     <TextBlock Text="Lost, alone and separated from family, a stray cat must untangle an ancient mystery to escape a long-forgotten cybercity and find their way home." 
-                                               FontSize="12" Foreground="#B8B6B4" TextWrapping="Wrap" Margin="0,0,0,15"/>
+                                               FontSize="12" Foreground="White" TextWrapping="Wrap" Margin="0,0,0,15"/>
                                     <TextBlock Text="$16.99 USD" FontSize="18" FontWeight="Bold" Foreground="White" Margin="0,0,0,12"/>
                                     <Border Background="#5C7E10" CornerRadius="6">
                                         <Button Content="Available now" Background="Transparent" Foreground="White" 
@@ -214,6 +234,7 @@
                                         <Border Background="#2A475E" Width="80" Height="60" CornerRadius="6"/>
                                     </WrapPanel>
                                 </StackPanel>
+                                </Grid>
                             </Border>
                         </Grid>
                     </Border>
