@@ -249,7 +249,11 @@
                                                 <ImageBrush ImageSource="Images/stray-screen-2.png" Stretch="UniformToFill"/>
                                             </Border.Background>
                                         </Border>
-                                        <Border Background="#2A475E" Width="80" Height="60" CornerRadius="6"/>
+                                        <Border CornerRadius="6" Width="80" Height="60">
+                                            <Border.Background>
+                                                <ImageBrush ImageSource="Images/stray-screen-3.png" Stretch="UniformToFill"/>
+                                            </Border.Background>
+                                        </Border>
                                     </WrapPanel>
                                 </StackPanel>
                                 </Grid>
