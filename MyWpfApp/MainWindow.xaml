@@ -139,7 +139,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Search Bar -->
-                    <Border Grid.Column="0" Background="#1A1620" CornerRadius="20" Padding="10,8" MaxWidth="400" HorizontalAlignment="Left">
+                    <Border Grid.Column="0" Background="#1A1620" CornerRadius="20" Padding="10,8" MaxWidth="400" HorizontalAlignment="Left" BorderBrush="#2A2A35" BorderThickness="1">
                         <TextBox Text="Search orders" Background="Transparent" Foreground="#B8B6B4" 
                                  BorderThickness="0" VerticalAlignment="Center"/>
                     </Border>
