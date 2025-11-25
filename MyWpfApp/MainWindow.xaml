@@ -155,7 +155,9 @@
                             <!-- Banner Content -->
                             <Grid Grid.Column="0">
                                 <Border CornerRadius="12,0,0,12">
-                                    <Image Source="Images/stray.png" Stretch="UniformToFill"/>
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="Images/stray.png" Stretch="UniformToFill"/>
+                                    </Border.Background>
                                 </Border>
                                 
                                 <!-- Genre Tags on Banner -->
