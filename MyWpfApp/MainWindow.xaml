@@ -142,7 +142,7 @@
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="35,25,35,25">
                 <StackPanel>
                     <!-- Hero Banner -->
-                    <Border Background="#9B4444" CornerRadius="12" Margin="15,15,15,25" Height="300">
+                    <Border Background="#9B4444" CornerRadius="12" Margin="15,15,15,25" Height="320">
                         <Border.Effect>
                             <DropShadowEffect Color="Black" BlurRadius="25" ShadowDepth="5" Opacity="0.6"/>
                         </Border.Effect>
@@ -190,12 +190,12 @@
                             </Grid>
 
                             <!-- Game Info Panel -->
-                            <Border Grid.Column="1" Background="#4A3520" Margin="10" CornerRadius="12" Padding="20">
+                            <Border Grid.Column="1" Background="#4A3520" Margin="10" CornerRadius="12" Padding="15">
                                 <StackPanel>
-                                    <TextBlock Text="Stray" FontSize="24" FontWeight="Bold" Foreground="White" Margin="0,0,0,10"/>
+                                    <TextBlock Text="Stray" FontSize="24" FontWeight="Bold" Foreground="White" Margin="0,0,0,8"/>
                                     <TextBlock Text="Lost, alone and separated from family, a stray cat must untangle an ancient mystery to escape a long-forgotten cybercity and find their way home." 
-                                               FontSize="12" Foreground="#B8B6B4" TextWrapping="Wrap" Margin="0,0,0,20"/>
-                                    <TextBlock Text="$16.99 USD" FontSize="18" FontWeight="Bold" Foreground="White" Margin="0,0,0,15"/>
+                                               FontSize="12" Foreground="#B8B6B4" TextWrapping="Wrap" Margin="0,0,0,15"/>
+                                    <TextBlock Text="$16.99 USD" FontSize="18" FontWeight="Bold" Foreground="White" Margin="0,0,0,12"/>
                                     <Border Background="#5C7E10" CornerRadius="6">
                                         <Button Content="Available now" Background="Transparent" Foreground="White" 
                                                 FontSize="14" FontWeight="Bold" Padding="15,10" BorderThickness="0" Cursor="Hand"/>
