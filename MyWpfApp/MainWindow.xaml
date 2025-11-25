@@ -219,13 +219,13 @@
                     </Border>
 
                     <!-- Carousel Dots -->
-                    <WrapPanel HorizontalAlignment="Center" Margin="0,0,0,15">
-                        <Ellipse Width="8" Height="8" Fill="#5C7E10" Margin="3"/>
-                        <Ellipse Width="8" Height="8" Fill="#4A4A4A" Margin="3"/>
-                        <Ellipse Width="8" Height="8" Fill="#4A4A4A" Margin="3"/>
-                        <Ellipse Width="8" Height="8" Fill="#4A4A4A" Margin="3"/>
-                        <Ellipse Width="8" Height="8" Fill="#4A4A4A" Margin="3"/>
-                        <Ellipse Width="8" Height="8" Fill="#4A4A4A" Margin="3"/>
+                    <WrapPanel HorizontalAlignment="Center" Margin="0">
+                        <Ellipse Width="8" Height="8" Fill="#5C7E10" Margin="2"/>
+                        <Ellipse Width="8" Height="8" Fill="#4A4A4A" Margin="2"/>
+                        <Ellipse Width="8" Height="8" Fill="#4A4A4A" Margin="2"/>
+                        <Ellipse Width="8" Height="8" Fill="#4A4A4A" Margin="2"/>
+                        <Ellipse Width="8" Height="8" Fill="#4A4A4A" Margin="2"/>
+                        <Ellipse Width="8" Height="8" Fill="#4A4A4A" Margin="2"/>
                     </WrapPanel>
 
                     <!-- Special Offers Section -->
