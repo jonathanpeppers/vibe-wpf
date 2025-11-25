@@ -139,10 +139,10 @@
             </Border>
 
             <!-- Content Scroll Area -->
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="30,20,30,20">
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="35,25,35,25">
                 <StackPanel>
                     <!-- Hero Banner -->
-                    <Border Background="#9B4444" CornerRadius="12" Margin="10,10,10,30" Height="270">
+                    <Border Background="#9B4444" CornerRadius="12" Margin="15,15,15,25" Height="300">
                         <Border.Effect>
                             <DropShadowEffect Color="Black" BlurRadius="25" ShadowDepth="5" Opacity="0.6"/>
                         </Border.Effect>
@@ -202,10 +202,14 @@
                                     </Border>
                                     <WrapPanel Margin="0,15,0,0">
                                         <Border CornerRadius="6" Margin="0,0,5,0" Width="80" Height="60">
-                                            <Image Source="Images/stray-screen-1.png" Stretch="UniformToFill"/>
+                                            <Border.Background>
+                                                <ImageBrush ImageSource="Images/stray-screen-1.png" Stretch="UniformToFill"/>
+                                            </Border.Background>
                                         </Border>
                                         <Border CornerRadius="6" Margin="0,0,5,0" Width="80" Height="60">
-                                            <Image Source="Images/stray-screen-2.png" Stretch="UniformToFill"/>
+                                            <Border.Background>
+                                                <ImageBrush ImageSource="Images/stray-screen-2.png" Stretch="UniformToFill"/>
+                                            </Border.Background>
                                         </Border>
                                         <Border Background="#2A475E" Width="80" Height="60" CornerRadius="6"/>
                                     </WrapPanel>
@@ -215,7 +219,7 @@
                     </Border>
 
                     <!-- Carousel Dots -->
-                    <WrapPanel HorizontalAlignment="Center" Margin="0,0,0,20">
+                    <WrapPanel HorizontalAlignment="Center" Margin="0,0,0,15">
                         <Ellipse Width="8" Height="8" Fill="#5C7E10" Margin="3"/>
                         <Ellipse Width="8" Height="8" Fill="#4A4A4A" Margin="3"/>
                         <Ellipse Width="8" Height="8" Fill="#4A4A4A" Margin="3"/>
