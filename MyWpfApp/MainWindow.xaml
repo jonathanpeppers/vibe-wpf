@@ -102,7 +102,13 @@
         </Border>
 
         <!-- Main Content Area -->
-        <Border Grid.Column="1" Background="#1B2838" CornerRadius="12" Margin="10">
+        <Border Grid.Column="1" CornerRadius="12" Margin="10">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#14181D" Offset="0"/>
+                    <GradientStop Color="#29151C" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
             <Border.Effect>
                 <DropShadowEffect Color="Black" BlurRadius="30" ShadowDepth="0" Opacity="0.7"/>
             </Border.Effect>
