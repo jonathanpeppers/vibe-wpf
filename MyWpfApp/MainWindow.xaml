@@ -247,38 +247,38 @@
                         
                         <!-- Hogwarts Legacy -->
                         <Border Grid.Column="0" Style="{StaticResource GameCardStyle}" Margin="0,0,10,0" Height="250">
-                            <Grid>
-                                <Border CornerRadius="8">
-                                    <Image Source="Images/hogwarts.png" Stretch="UniformToFill"/>
-                                </Border>
-                            </Grid>
+                            <Border CornerRadius="8">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="Images/hogwarts.png" Stretch="UniformToFill"/>
+                                </Border.Background>
+                            </Border>
                         </Border>
 
                         <!-- Call of Duty -->
                         <Border Grid.Column="1" Style="{StaticResource GameCardStyle}" Margin="0,0,10,0" Height="250">
-                            <Grid>
-                                <Border CornerRadius="8">
-                                    <Image Source="Images/codmw.png" Stretch="UniformToFill"/>
-                                </Border>
-                            </Grid>
+                            <Border CornerRadius="8">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="Images/codmw.png" Stretch="UniformToFill"/>
+                                </Border.Background>
+                            </Border>
                         </Border>
 
                         <!-- FIFA 23 -->
                         <Border Grid.Column="2" Style="{StaticResource GameCardStyle}" Margin="0,0,10,0" Height="250">
-                            <Grid>
-                                <Border CornerRadius="8">
-                                    <Image Source="Images/fifa.png" Stretch="UniformToFill"/>
-                                </Border>
-                            </Grid>
+                            <Border CornerRadius="8">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="Images/fifa.png" Stretch="UniformToFill"/>
+                                </Border.Background>
+                            </Border>
                         </Border>
 
                         <!-- Mass Effect Andromeda -->
                         <Border Grid.Column="3" Style="{StaticResource GameCardStyle}" Height="250">
-                            <Grid>
-                                <Border CornerRadius="8">
-                                    <Image Source="Images/masseffect.png" Stretch="UniformToFill"/>
-                                </Border>
-                            </Grid>
+                            <Border CornerRadius="8">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="Images/masseffect.png" Stretch="UniformToFill"/>
+                                </Border.Background>
+                            </Border>
                         </Border>
                     </Grid>
                 </StackPanel>
