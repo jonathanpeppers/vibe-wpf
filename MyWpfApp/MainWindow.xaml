@@ -5,8 +5,237 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyWpfApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Steam" Height="768" Width="1024" 
+        Background="#1B2838"
+        WindowStyle="None"
+        ResizeMode="CanResize">
+    
+    <Window.Resources>
+        <!-- Button Style for Navigation -->
+        <Style x:Key="NavButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#B8B6B4"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="15,12"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2A475E"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
+        <!-- Active Nav Button Style -->
+        <Style x:Key="ActiveNavButtonStyle" TargetType="Button" BasedOn="{StaticResource NavButtonStyle}">
+            <Setter Property="Background" Value="#2A3F5F"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <!-- Game Card Style -->
+        <Style x:Key="GameCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="#2A475E"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#355C7D"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Sidebar -->
+        <Border Grid.Column="0" Background="#171D25">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Steam Logo -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="15,20,15,30">
+                    <Image Source="Images/steam-logo.png" Width="32" Height="32"/>
+                    <TextBlock Text="STEAM" FontSize="18" FontWeight="Bold" 
+                               Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+
+                <!-- Navigation Menu -->
+                <StackPanel Grid.Row="1">
+                    <Button Style="{StaticResource ActiveNavButtonStyle}" Content="🏪  Game store"/>
+                    <Button Style="{StaticResource NavButtonStyle}" Content="📚  Library"/>
+                    <Button Style="{StaticResource NavButtonStyle}" Content="👥  Community"/>
+                    <Button Style="{StaticResource NavButtonStyle}" Content="👤  Friends"/>
+                </StackPanel>
+
+                <!-- Bottom Settings -->
+                <StackPanel Grid.Row="2" Margin="0,0,0,20">
+                    <Button Style="{StaticResource NavButtonStyle}" Content="⚙️  Settings"/>
+                    <Button Style="{StaticResource NavButtonStyle}" Content="❓  Help"/>
+                    <Border Background="#2A475E" Height="60" Margin="10" CornerRadius="4" Padding="10">
+                        <StackPanel>
+                            <TextBlock Text="Friend chat" FontSize="11" Foreground="#B8B6B4"/>
+                            <TextBlock Text="and Groups" FontSize="11" Foreground="#B8B6B4"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Main Content Area -->
+        <Grid Grid.Column="1" Background="#1B2838">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <Border Grid.Row="0" Background="#212C3C" Padding="20,15">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Search Bar -->
+                    <Border Grid.Column="0" Background="#2A475E" CornerRadius="3" Padding="10,8" MaxWidth="400" HorizontalAlignment="Left">
+                        <TextBox Text="Search orders" Background="Transparent" Foreground="#B8B6B4" 
+                                 BorderThickness="0" VerticalAlignment="Center"/>
+                    </Border>
+
+                    <!-- User Profile -->
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Text="🔔" FontSize="18" Foreground="White" Margin="15,0" VerticalAlignment="Center"/>
+                        <Border Background="#2A475E" Width="1" Height="24" Margin="5,0"/>
+                        <TextBlock Text="🛒" FontSize="18" Foreground="White" Margin="15,0" VerticalAlignment="Center"/>
+                        <Border Background="#2A475E" Width="1" Height="24" Margin="5,0"/>
+                        <Ellipse Width="32" Height="32" Fill="#E67E22" Margin="15,0,5,0"/>
+                        <TextBlock Text="Jenny Wilson  ▼" FontSize="13" Foreground="White" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Content Scroll Area -->
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="30,20">
+                <StackPanel>
+                    <!-- Genre Tags -->
+                    <WrapPanel Margin="0,0,0,20">
+                        <Button Content="Cats" Background="#8B4513" Foreground="White" BorderThickness="0" 
+                                Padding="12,6" Margin="0,0,8,0" Cursor="Hand"/>
+                        <Button Content="Adventure" Background="#8B4513" Foreground="White" BorderThickness="0" 
+                                Padding="12,6" Margin="0,0,8,0" Cursor="Hand"/>
+                        <Button Content="Cyberpunk" Background="#8B4513" Foreground="White" BorderThickness="0" 
+                                Padding="12,6" Margin="0,0,8,0" Cursor="Hand"/>
+                        <Button Content="Atmospheric" Background="#8B4513" Foreground="White" BorderThickness="0" 
+                                Padding="12,6" Margin="0,0,8,0" Cursor="Hand"/>
+                        <Button Content="+" Background="#8B4513" Foreground="White" BorderThickness="0" 
+                                Padding="12,6" Margin="0,0,8,0" Cursor="Hand"/>
+                    </WrapPanel>
+
+                    <!-- Hero Banner -->
+                    <Border Background="#9B4444" CornerRadius="6" Margin="0,0,0,30" Height="300">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="300"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Banner Content -->
+                            <Grid Grid.Column="0">
+                                <Image Source="Images/stray.png" Stretch="UniformToFill"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" 
+                                            VerticalAlignment="Bottom" Margin="20,0,0,20">
+                                    <Ellipse Width="32" Height="32" Fill="Gray" Margin="0,0,5,0"/>
+                                    <Ellipse Width="32" Height="32" Fill="Gray" Margin="0,0,5,0"/>
+                                    <Ellipse Width="32" Height="32" Fill="Gray" Margin="0,0,5,0"/>
+                                    <TextBlock Text="12 friends" FontSize="12" Foreground="White" 
+                                               VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Game Info Panel -->
+                            <Border Grid.Column="1" Background="#4A3520" Margin="10" CornerRadius="8" Padding="20">
+                                <StackPanel>
+                                    <TextBlock Text="Stray" FontSize="24" FontWeight="Bold" Foreground="White" Margin="0,0,0,10"/>
+                                    <TextBlock Text="Lost, alone and separated from family, a stray cat must untangle an ancient mystery to escape a long-forgotten cybercity and find their way home." 
+                                               FontSize="12" Foreground="#B8B6B4" TextWrapping="Wrap" Margin="0,0,0,20"/>
+                                    <TextBlock Text="$16.99 USD" FontSize="18" FontWeight="Bold" Foreground="White" Margin="0,0,0,15"/>
+                                    <Button Content="Available now" Background="#5C7E10" Foreground="White" 
+                                            FontSize="14" FontWeight="Bold" Padding="15,10" BorderThickness="0" Cursor="Hand"/>
+                                    <WrapPanel Margin="0,15,0,0">
+                                        <Image Source="Images/stray-screen-1.png" Width="80" Height="60" Margin="0,0,5,0" Stretch="UniformToFill"/>
+                                        <Image Source="Images/stray-screen-2.png" Width="80" Height="60" Margin="0,0,5,0" Stretch="UniformToFill"/>
+                                        <Border Background="#2A475E" Width="80" Height="60"/>
+                                    </WrapPanel>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!-- Carousel Dots -->
+                    <WrapPanel HorizontalAlignment="Center" Margin="0,0,0,30">
+                        <Ellipse Width="8" Height="8" Fill="#5C7E10" Margin="3"/>
+                        <Ellipse Width="8" Height="8" Fill="#4A4A4A" Margin="3"/>
+                        <Ellipse Width="8" Height="8" Fill="#4A4A4A" Margin="3"/>
+                        <Ellipse Width="8" Height="8" Fill="#4A4A4A" Margin="3"/>
+                        <Ellipse Width="8" Height="8" Fill="#4A4A4A" Margin="3"/>
+                        <Ellipse Width="8" Height="8" Fill="#4A4A4A" Margin="3"/>
+                    </WrapPanel>
+
+                    <!-- Special Offers Section -->
+                    <Grid Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Special offers" FontSize="20" 
+                                   Foreground="White" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Text="Learn more" FontSize="13" 
+                                   Foreground="#66C0F4" VerticalAlignment="Center" Cursor="Hand"/>
+                    </Grid>
+
+                    <!-- Game Cards Grid -->
+                    <UniformGrid Columns="4" Rows="1">
+                        <!-- Hogwarts Legacy -->
+                        <Border Style="{StaticResource GameCardStyle}" Margin="0,0,10,0" Height="250">
+                            <Image Source="Images/hogwarts.png" Stretch="UniformToFill"/>
+                        </Border>
+
+                        <!-- Call of Duty -->
+                        <Border Style="{StaticResource GameCardStyle}" Margin="0,0,10,0" Height="250">
+                            <Image Source="Images/codmw.png" Stretch="UniformToFill"/>
+                        </Border>
+
+                        <!-- FIFA 23 -->
+                        <Border Style="{StaticResource GameCardStyle}" Margin="0,0,10,0" Height="250">
+                            <Image Source="Images/fifa.png" Stretch="UniformToFill"/>
+                        </Border>
+
+                        <!-- Mass Effect Andromeda -->
+                        <Border Style="{StaticResource GameCardStyle}" Height="250">
+                            <Image Source="Images/masseffect.png" Stretch="UniformToFill"/>
+                        </Border>
+                    </UniformGrid>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Window>
