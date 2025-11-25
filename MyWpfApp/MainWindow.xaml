@@ -139,10 +139,10 @@
             </Border>
 
             <!-- Content Scroll Area -->
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="35,25,35,25">
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="35,15,35,20">
                 <StackPanel>
                     <!-- Hero Banner -->
-                    <Border Background="#9B4444" CornerRadius="12" Margin="15,15,15,25" Height="320">
+                    <Border Background="#9B4444" CornerRadius="12" Margin="15,5,15,25" Height="320">
                         <Border.Effect>
                             <DropShadowEffect Color="Black" BlurRadius="25" ShadowDepth="5" Opacity="0.6"/>
                         </Border.Effect>
