@@ -44,8 +44,13 @@
         <!-- Game Card Style -->
         <Style x:Key="GameCardStyle" TargetType="Border">
             <Setter Property="Background" Value="#2A475E"/>
-            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="CornerRadius" Value="8"/>
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black" BlurRadius="20" ShadowDepth="5" Opacity="0.5"/>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#355C7D"/>
@@ -99,14 +104,18 @@
         </Border>
 
         <!-- Main Content Area -->
-        <Grid Grid.Column="1" Background="#1B2838">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <Border Grid.Column="1" Background="#1B2838" CornerRadius="12" Margin="10">
+            <Border.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="30" ShadowDepth="0" Opacity="0.7"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
             <!-- Header -->
-            <Border Grid.Row="0" Background="#212C3C" Padding="20,15">
+            <Border Grid.Row="0" Background="#212C3C" Padding="20,15" CornerRadius="12,12,0,0">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -114,7 +123,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Search Bar -->
-                    <Border Grid.Column="0" Background="#2A475E" CornerRadius="3" Padding="10,8" MaxWidth="400" HorizontalAlignment="Left">
+                    <Border Grid.Column="0" Background="#2A475E" CornerRadius="20" Padding="10,8" MaxWidth="400" HorizontalAlignment="Left">
                         <TextBox Text="Search orders" Background="Transparent" Foreground="#B8B6B4" 
                                  BorderThickness="0" VerticalAlignment="Center"/>
                     </Border>
@@ -134,22 +143,11 @@
             <!-- Content Scroll Area -->
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="30,20">
                 <StackPanel>
-                    <!-- Genre Tags -->
-                    <WrapPanel Margin="0,0,0,20">
-                        <Button Content="Cats" Background="#8B4513" Foreground="White" BorderThickness="0" 
-                                Padding="12,6" Margin="0,0,8,0" Cursor="Hand"/>
-                        <Button Content="Adventure" Background="#8B4513" Foreground="White" BorderThickness="0" 
-                                Padding="12,6" Margin="0,0,8,0" Cursor="Hand"/>
-                        <Button Content="Cyberpunk" Background="#8B4513" Foreground="White" BorderThickness="0" 
-                                Padding="12,6" Margin="0,0,8,0" Cursor="Hand"/>
-                        <Button Content="Atmospheric" Background="#8B4513" Foreground="White" BorderThickness="0" 
-                                Padding="12,6" Margin="0,0,8,0" Cursor="Hand"/>
-                        <Button Content="+" Background="#8B4513" Foreground="White" BorderThickness="0" 
-                                Padding="12,6" Margin="0,0,8,0" Cursor="Hand"/>
-                    </WrapPanel>
-
                     <!-- Hero Banner -->
-                    <Border Background="#9B4444" CornerRadius="6" Margin="0,0,0,30" Height="300">
+                    <Border Background="#9B4444" CornerRadius="12" Margin="0,0,0,30" Height="300">
+                        <Border.Effect>
+                            <DropShadowEffect Color="Black" BlurRadius="25" ShadowDepth="5" Opacity="0.6"/>
+                        </Border.Effect>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -158,7 +156,29 @@
 
                             <!-- Banner Content -->
                             <Grid Grid.Column="0">
-                                <Image Source="Images/stray.png" Stretch="UniformToFill"/>
+                                <Border CornerRadius="12,0,0,12">
+                                    <Image Source="Images/stray.png" Stretch="UniformToFill"/>
+                                </Border>
+                                
+                                <!-- Genre Tags on Banner -->
+                                <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,15,0,0">
+                                    <Border Background="#8B4513" CornerRadius="4" Margin="0,0,5,0">
+                                        <TextBlock Text="Cats" Foreground="White" Padding="8,4" FontSize="11"/>
+                                    </Border>
+                                    <Border Background="#8B4513" CornerRadius="4" Margin="0,0,5,0">
+                                        <TextBlock Text="Adventure" Foreground="White" Padding="8,4" FontSize="11"/>
+                                    </Border>
+                                    <Border Background="#8B4513" CornerRadius="4" Margin="0,0,5,0">
+                                        <TextBlock Text="Cyberpunk" Foreground="White" Padding="8,4" FontSize="11"/>
+                                    </Border>
+                                    <Border Background="#8B4513" CornerRadius="4" Margin="0,0,5,0">
+                                        <TextBlock Text="Atmospheric" Foreground="White" Padding="8,4" FontSize="11"/>
+                                    </Border>
+                                    <Border Background="#8B4513" CornerRadius="4">
+                                        <TextBlock Text="+" Foreground="White" Padding="8,4" FontSize="11"/>
+                                    </Border>
+                                </WrapPanel>
+                                
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" 
                                             VerticalAlignment="Bottom" Margin="20,0,0,20">
                                     <Ellipse Width="32" Height="32" Fill="Gray" Margin="0,0,5,0"/>
@@ -170,18 +190,24 @@
                             </Grid>
 
                             <!-- Game Info Panel -->
-                            <Border Grid.Column="1" Background="#4A3520" Margin="10" CornerRadius="8" Padding="20">
+                            <Border Grid.Column="1" Background="#4A3520" Margin="10" CornerRadius="12" Padding="20">
                                 <StackPanel>
                                     <TextBlock Text="Stray" FontSize="24" FontWeight="Bold" Foreground="White" Margin="0,0,0,10"/>
                                     <TextBlock Text="Lost, alone and separated from family, a stray cat must untangle an ancient mystery to escape a long-forgotten cybercity and find their way home." 
                                                FontSize="12" Foreground="#B8B6B4" TextWrapping="Wrap" Margin="0,0,0,20"/>
                                     <TextBlock Text="$16.99 USD" FontSize="18" FontWeight="Bold" Foreground="White" Margin="0,0,0,15"/>
-                                    <Button Content="Available now" Background="#5C7E10" Foreground="White" 
-                                            FontSize="14" FontWeight="Bold" Padding="15,10" BorderThickness="0" Cursor="Hand"/>
+                                    <Border Background="#5C7E10" CornerRadius="6">
+                                        <Button Content="Available now" Background="Transparent" Foreground="White" 
+                                                FontSize="14" FontWeight="Bold" Padding="15,10" BorderThickness="0" Cursor="Hand"/>
+                                    </Border>
                                     <WrapPanel Margin="0,15,0,0">
-                                        <Image Source="Images/stray-screen-1.png" Width="80" Height="60" Margin="0,0,5,0" Stretch="UniformToFill"/>
-                                        <Image Source="Images/stray-screen-2.png" Width="80" Height="60" Margin="0,0,5,0" Stretch="UniformToFill"/>
-                                        <Border Background="#2A475E" Width="80" Height="60"/>
+                                        <Border CornerRadius="6" Margin="0,0,5,0" Width="80" Height="60">
+                                            <Image Source="Images/stray-screen-1.png" Stretch="UniformToFill"/>
+                                        </Border>
+                                        <Border CornerRadius="6" Margin="0,0,5,0" Width="80" Height="60">
+                                            <Image Source="Images/stray-screen-2.png" Stretch="UniformToFill"/>
+                                        </Border>
+                                        <Border Background="#2A475E" Width="80" Height="60" CornerRadius="6"/>
                                     </WrapPanel>
                                 </StackPanel>
                             </Border>
@@ -211,29 +237,53 @@
                     </Grid>
 
                     <!-- Game Cards Grid -->
-                    <UniformGrid Columns="4" Rows="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
                         <!-- Hogwarts Legacy -->
-                        <Border Style="{StaticResource GameCardStyle}" Margin="0,0,10,0" Height="250">
-                            <Image Source="Images/hogwarts.png" Stretch="UniformToFill"/>
+                        <Border Grid.Column="0" Style="{StaticResource GameCardStyle}" Margin="0,0,10,0" Height="250">
+                            <Grid>
+                                <Border CornerRadius="8">
+                                    <Image Source="Images/hogwarts.png" Stretch="UniformToFill"/>
+                                </Border>
+                            </Grid>
                         </Border>
 
                         <!-- Call of Duty -->
-                        <Border Style="{StaticResource GameCardStyle}" Margin="0,0,10,0" Height="250">
-                            <Image Source="Images/codmw.png" Stretch="UniformToFill"/>
+                        <Border Grid.Column="1" Style="{StaticResource GameCardStyle}" Margin="0,0,10,0" Height="250">
+                            <Grid>
+                                <Border CornerRadius="8">
+                                    <Image Source="Images/codmw.png" Stretch="UniformToFill"/>
+                                </Border>
+                            </Grid>
                         </Border>
 
                         <!-- FIFA 23 -->
-                        <Border Style="{StaticResource GameCardStyle}" Margin="0,0,10,0" Height="250">
-                            <Image Source="Images/fifa.png" Stretch="UniformToFill"/>
+                        <Border Grid.Column="2" Style="{StaticResource GameCardStyle}" Margin="0,0,10,0" Height="250">
+                            <Grid>
+                                <Border CornerRadius="8">
+                                    <Image Source="Images/fifa.png" Stretch="UniformToFill"/>
+                                </Border>
+                            </Grid>
                         </Border>
 
                         <!-- Mass Effect Andromeda -->
-                        <Border Style="{StaticResource GameCardStyle}" Height="250">
-                            <Image Source="Images/masseffect.png" Stretch="UniformToFill"/>
+                        <Border Grid.Column="3" Style="{StaticResource GameCardStyle}" Height="250">
+                            <Grid>
+                                <Border CornerRadius="8">
+                                    <Image Source="Images/masseffect.png" Stretch="UniformToFill"/>
+                                </Border>
+                            </Grid>
                         </Border>
-                    </UniformGrid>
+                    </Grid>
                 </StackPanel>
             </ScrollViewer>
-        </Grid>
+            </Grid>
+        </Border>
     </Grid>
 </Window>
