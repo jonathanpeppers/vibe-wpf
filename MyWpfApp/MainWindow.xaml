@@ -66,7 +66,13 @@
         </Grid.ColumnDefinitions>
 
         <!-- Left Sidebar -->
-        <Border Grid.Column="0" Background="#171D25">
+        <Border Grid.Column="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#14181D" Offset="0"/>
+                    <GradientStop Color="#29151C" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -119,7 +125,13 @@
                 </Grid.RowDefinitions>
 
             <!-- Header -->
-            <Border Grid.Row="0" Background="#212C3C" Padding="20,10" CornerRadius="12,12,0,0">
+            <Border Grid.Row="0" Padding="20,10" CornerRadius="12,12,0,0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#14181D" Offset="0"/>
+                        <GradientStop Color="#1A1620" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
