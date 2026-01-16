@@ -1,0 +1,7 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        ".\\.github\\skills\\screenshot\\get-screenshot.ps1": true,
+        ".\\.github\\skills\\tree\\get-tree.ps1": true,
+        ".\\.github\\skills\\restart\\restart-app.ps1": true
+    }
+}
