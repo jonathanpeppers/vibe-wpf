@@ -9,9 +9,9 @@
         WindowStartupLocation="CenterScreen">
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-            <GradientStop Color="#29151E" Offset="0"/>
-            <GradientStop Color="#1A1420" Offset="0.5"/>
-            <GradientStop Color="#111921" Offset="1"/>
+            <GradientStop Color="#1B2838" Offset="0"/>
+            <GradientStop Color="#2A475E" Offset="0.5"/>
+            <GradientStop Color="#1B2838" Offset="1"/>
         </LinearGradientBrush>
     </Window.Background>
     
@@ -59,13 +59,13 @@
         </Style>
 
         <Style x:Key="GameCardStyle" TargetType="Border">
-            <Setter Property="Background" Value="#0D0F14"/>
+            <Setter Property="Background" Value="#171A21"/>
             <Setter Property="CornerRadius" Value="4"/>
             <Setter Property="Margin" Value="8"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#15171F"/>
+                    <Setter Property="Background" Value="#1F252E"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -103,21 +103,21 @@
                     </StackPanel>
                 </Button>
                 
-                <Button Margin="10,5" Padding="15,8" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Foreground="#6B7380" Cursor="Hand">
+                <Button Margin="10,5" Padding="15,8" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Foreground="#B8B6B4" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="📚" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
                         <TextBlock Text="Library" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
                 
-                <Button Margin="10,5" Padding="15,8" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Foreground="#6B7380" Cursor="Hand">
+                <Button Margin="10,5" Padding="15,8" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Foreground="#B8B6B4" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="👥" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
                         <TextBlock Text="Community" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
                 
-                <Button Margin="10,5" Padding="15,8" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Foreground="#6B7380" Cursor="Hand">
+                <Button Margin="10,5" Padding="15,8" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Foreground="#B8B6B4" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="👤" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
                         <TextBlock Text="Friends" VerticalAlignment="Center"/>
@@ -127,21 +127,21 @@
             
             <!-- Bottom Buttons -->
             <StackPanel Grid.Row="2" Margin="0,0,0,20">
-                <Button Margin="10,5" Padding="15,8" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Foreground="#6B7380" Cursor="Hand">
+                <Button Margin="10,5" Padding="15,8" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Foreground="#B8B6B4" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="⚙️" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
                         <TextBlock Text="Settings" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
                 
-                <Button Margin="10,5" Padding="15,8" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Foreground="#6B7380" Cursor="Hand">
+                <Button Margin="10,5" Padding="15,8" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Foreground="#B8B6B4" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="❓" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
                         <TextBlock Text="Help" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
                 
-                <Border Background="#0F1419" CornerRadius="8" Padding="12,10" Margin="10,10" Cursor="Hand">
+                <Border Background="#171A21" CornerRadius="8" Padding="12,10" Margin="10,10" Cursor="Hand">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Border Width="8" Height="8" CornerRadius="4" Background="#FF8833" VerticalAlignment="Center" Margin="0,0,8,0"/>
@@ -149,7 +149,7 @@
                                 <TextBlock Text="Friend chat" Foreground="White" FontSize="11"/>
                                 <TextBlock Text="and Groups" Foreground="#FF9955" FontSize="10"/>
                             </StackPanel>
-                            <TextBlock Text="+" Foreground="#6B7380" FontSize="16" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            <TextBlock Text="+" Foreground="#B8B6B4" FontSize="16" VerticalAlignment="Center" Margin="10,0,0,0"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -166,11 +166,11 @@
             <!-- Top Bar with Search and User -->
             <Grid Grid.Row="0" Background="Transparent" Height="60">
                 <!-- Search Box (Center Left) -->
-                <Border Background="#0E1218" CornerRadius="3" Padding="12,8" Width="360" 
+                <Border Background="#17212B" CornerRadius="3" Padding="12,8" Width="360" 
                         HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="🔍" FontSize="14" Foreground="#5C6573" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                        <TextBlock Text="Search orders" Foreground="#5C6573" VerticalAlignment="Center"/>
+                        <TextBlock Text="🔍" FontSize="14" Foreground="#8F98A0" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBlock Text="Search orders" Foreground="#8F98A0" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
                 
@@ -179,7 +179,7 @@
                     <!-- Notification Bell -->
                     <Border Width="36" Height="36" Margin="0,0,0,0" Background="Transparent" Cursor="Hand">
                         <Grid>
-                            <TextBlock Text="🔔" FontSize="18" Foreground="#6B7380" 
+                            <TextBlock Text="🔔" FontSize="18" Foreground="#B8B6B4" 
                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <Ellipse Width="8" Height="8" Fill="#D32F2F" 
                                    HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,4,4,0"/>
@@ -188,7 +188,7 @@
                     
                     <!-- Shopping Cart -->
                     <Border Width="36" Height="36" Margin="5,0,0,0" Background="Transparent" Cursor="Hand">
-                        <TextBlock Text="🛒" FontSize="18" Foreground="#6B7380" 
+                        <TextBlock Text="🛒" FontSize="18" Foreground="#B8B6B4" 
                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     
@@ -201,7 +201,7 @@
                         </Border.Background>
                     </Border>
                     <TextBlock Text="Jenny Wilson" Foreground="White" VerticalAlignment="Center" Margin="10,0,5,0" FontSize="13"/>
-                    <TextBlock Text="▼" Foreground="#6B7380" VerticalAlignment="Center" FontSize="10" Cursor="Hand"/>
+                    <TextBlock Text="▼" Foreground="#B8B6B4" VerticalAlignment="Center" FontSize="10" Cursor="Hand"/>
                 </StackPanel>
             </Grid>
         
@@ -390,7 +390,7 @@
                                     <ImageBrush ImageSource="Images/hogwarts.png" Stretch="UniformToFill"/>
                                 </Border.Background>
                                 <Grid>
-                                    <TextBlock Text="♥" FontSize="18" Foreground="#5C6573" 
+                                    <TextBlock Text="♥" FontSize="18" Foreground="#8F98A0" 
                                              HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" 
                                              Opacity="0.8"/>
                                 </Grid>
@@ -421,7 +421,7 @@
                                           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,8,0,0">
                                         <TextBlock Text="-50%" Foreground="White" FontSize="11" FontWeight="Bold"/>
                                     </Border>
-                                    <TextBlock Text="♥" FontSize="18" Foreground="#5C6573" 
+                                    <TextBlock Text="♥" FontSize="18" Foreground="#8F98A0" 
                                              HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" 
                                              Opacity="0.8"/>
                                 </Grid>
@@ -449,7 +449,7 @@
                                     <ImageBrush ImageSource="Images/fifa.png" Stretch="UniformToFill"/>
                                 </Border.Background>
                                 <Grid>
-                                    <TextBlock Text="♥" FontSize="18" Foreground="#5C6573" 
+                                    <TextBlock Text="♥" FontSize="18" Foreground="#8F98A0" 
                                              HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" 
                                              Opacity="0.8"/>
                                 </Grid>
@@ -473,7 +473,7 @@
                                     <ImageBrush ImageSource="Images/masseffect.png" Stretch="UniformToFill"/>
                                 </Border.Background>
                                 <Grid>
-                                    <TextBlock Text="♥" FontSize="18" Foreground="#5C6573" 
+                                    <TextBlock Text="♥" FontSize="18" Foreground="#8F98A0" 
                                              HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" 
                                              Opacity="0.8"/>
                                 </Grid>
