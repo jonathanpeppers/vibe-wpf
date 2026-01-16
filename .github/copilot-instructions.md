@@ -6,7 +6,10 @@ This repository contains a WPF application with live inspection capabilities for
 
 - **MyWpfApp/** - Main WPF application
 - **VibeExtensions/** - Extension library providing HTTP server for live inspection
-- **get-vibe.ps1** - PowerShell script to inspect running application
+- **.github/skills/** - Agent Skills for AI-assisted development
+  - **screenshot/** - Capture UI screenshots
+  - **tree/** - Inspect visual tree structure
+  - **restart/** - Restart the application
 
 ## Running the Application
 
@@ -19,29 +22,36 @@ dotnet watch run
 
 The app will automatically rebuild and restart when you modify `.cs` or `.xaml` files.
 
-## Live Inspection with get-vibe.ps1
+## Live Inspection Skills
 
-While the app is running, use `get-vibe.ps1` to inspect the UI:
+This repository includes three Agent Skills for inspecting the running application. These are automatically discovered by Copilot and can be invoked based on your prompts.
 
-### Get Screenshot
+### Screenshot Skill
+Capture the current UI as a PNG screenshot:
 ```powershell
-.\get-vibe.ps1 ui
-# or simply
-.\get-vibe.ps1
+.\.github\skills\screenshot\get-screenshot.ps1
 ```
-Captures the current UI as PNG, saves with timestamp to `screenshots/` folder, and opens it.
+Saves with timestamp to `screenshots/` folder and opens it.
 
-### Get Visual Tree
+### Visual Tree Skill
+Get the complete WPF visual tree as formatted JSON:
 ```powershell
-.\get-vibe.ps1 tree
+.\.github\skills\tree\get-tree.ps1
 ```
-Outputs the complete WPF visual tree as formatted JSON to console, showing element types, names, and hierarchy.
+Shows element types, names, and hierarchy.
 
-### Restart Application
+### Restart Skill
+Trigger `dotnet watch` to restart the application:
 ```powershell
-.\get-vibe.ps1 restart
+.\.github\skills\restart\restart-app.ps1
 ```
-Triggers `dotnet watch` to restart the application (equivalent to pressing Ctrl+R in the watch terminal). Useful for applying XAML changes that don't hot reload automatically.
+Useful for applying XAML changes that don't hot reload automatically.
+
+### Legacy Script
+The original combined script is still available:
+```powershell
+.\get-vibe.ps1 [ui|tree|restart]
+```
 
 ## Development Workflow for AI Assistants
 
@@ -56,20 +66,20 @@ When iterating on WPF UI:
 
 2. **Make changes** to XAML or C# files (in your editor, not the terminal)
 
-3. **Restart and capture results** using get-vibe.ps1 (from a different terminal):
-   - `.\get-vibe.ps1 restart` - Restart the app to apply XAML changes (WPF hot reload is limited)
+3. **Restart and capture results** using the skills (from a different terminal):
+   - `.\.github\skills\restart\restart-app.ps1` - Restart the app to apply XAML changes
    - Wait 2-3 seconds for restart to complete
-   - `.\get-vibe.ps1 ui` - Verify visual appearance
-   - `.\get-vibe.ps1 tree` - Inspect element structure and naming
+   - `.\.github\skills\screenshot\get-screenshot.ps1` - Verify visual appearance
+   - `.\.github\skills\tree\get-tree.ps1` - Inspect element structure and naming
    
    **Quick iteration**: Combine commands to restart and capture in one line:
    ```powershell
-   .\get-vibe.ps1 restart; Start-Sleep -Seconds 3; .\get-vibe.ps1 ui
+   .\.github\skills\restart\restart-app.ps1; Start-Sleep -Seconds 3; .\.github\skills\screenshot\get-screenshot.ps1
    ```
 
-4. **Iterate** - Make changes, restart with `.\get-vibe.ps1 restart`, and capture screenshots
+4. **Iterate** - Make changes, restart, and capture screenshots
 
-**Note on Hot Reload**: WPF XAML hot reload is limited and often requires a restart for changes to apply. The `restart` command automates this instead of manually pressing Ctrl+R in the watch terminal.
+**Note on Hot Reload**: WPF XAML hot reload is limited and often requires a restart for changes to apply. The restart skill automates this instead of manually pressing Ctrl+R in the watch terminal.
 
 This enables rapid feedback loops without manual restarts.
 
@@ -78,5 +88,6 @@ This enables rapid feedback loops without manual restarts.
 The VibeExtensions library provides an HTTP server (initialized in App.xaml.cs) that exposes:
 - `http://localhost:5010/ui/` - PNG screenshot endpoint
 - `http://localhost:5010/tree/` - JSON visual tree endpoint
+- `http://localhost:5010/restart/` - Graceful shutdown endpoint
 
 These endpoints allow external processes to observe the running application state.
