@@ -33,7 +33,16 @@ $triggerFile = Join-Path (Get-Location) "MyWpfApp\App.xaml.cs"
 if (Test-Path $triggerFile) {
     (Get-Item $triggerFile).LastWriteTime = Get-Date
     Write-Host "File change detected - dotnet watch will now restart the app." -ForegroundColor Green
-    Write-Host "Wait 2-3 seconds for the app to fully restart." -ForegroundColor Yellow
+    Write-Host "Waiting for app to restart..." -ForegroundColor Yellow
+    
+    # Wait for the app to restart and become available
+    Start-Sleep -Seconds 2
+    if (Wait-ForVibeServer -MaxAttempts 8 -DelaySeconds 1) {
+        Write-Host "App restarted successfully and is ready!" -ForegroundColor Green
+    }
+    else {
+        Write-Host "Warning: App may still be restarting. Wait a few more seconds." -ForegroundColor Yellow
+    }
 }
 else {
     Write-Host "Warning: Could not find $triggerFile to trigger rebuild." -ForegroundColor Yellow

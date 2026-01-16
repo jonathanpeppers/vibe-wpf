@@ -55,6 +55,36 @@ function Get-VibeScreenshotsDirectory {
     return $screenshotsDir
 }
 
+function Wait-ForVibeServer {
+    <#
+    .SYNOPSIS
+    Waits for the Vibe server to become available with retry logic.
+    
+    .PARAMETER MaxAttempts
+    Maximum number of connection attempts. Default is 10.
+    
+    .PARAMETER DelaySeconds
+    Delay between attempts in seconds. Default is 1.
+    
+    .OUTPUTS
+    Boolean indicating whether the server became available.
+    #>
+    param(
+        [int]$MaxAttempts = 10,
+        [int]$DelaySeconds = 1
+    )
+    
+    for ($i = 1; $i -le $MaxAttempts; $i++) {
+        if (Test-VibeServerConnection) {
+            return $true
+        }
+        if ($i -lt $MaxAttempts) {
+            Start-Sleep -Seconds $DelaySeconds
+        }
+    }
+    return $false
+}
+
 function Invoke-VibeEndpoint {
     <#
     .SYNOPSIS

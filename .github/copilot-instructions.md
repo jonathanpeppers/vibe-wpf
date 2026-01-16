@@ -24,14 +24,21 @@ The app will automatically rebuild and restart when you modify `.cs` or `.xaml` 
 
 ## Live Inspection Skills
 
-This repository includes three Agent Skills for inspecting the running application. These are automatically discovered by Copilot and can be invoked based on your prompts.
+This repository includes four Agent Skills for inspecting the running application. These are automatically discovered by Copilot and can be invoked based on your prompts.
+
+### Start Skill
+Start the WPF application in watch mode:
+```powershell
+.\.github\skills\start\start-app.ps1
+```
+Automatically waits for the app to be ready. Only needs to be run once per session.
 
 ### Screenshot Skill
 Capture the current UI as a PNG screenshot:
 ```powershell
 .\.github\skills\screenshot\get-screenshot.ps1
 ```
-Saves with timestamp to `screenshots/` folder and opens it.
+Saves with timestamp to `screenshots/` folder and opens it. Now includes automatic retry logic to wait for the app to be ready.
 
 ### Visual Tree Skill
 Get the complete WPF visual tree as formatted JSON:
@@ -57,25 +64,30 @@ The original combined script is still available:
 
 When iterating on WPF UI:
 
-1. **Start watch mode in a background terminal** (leave it running):
+1. **Start the app** (first time only):
+   ```powershell
+   .\.github\skills\start\start-app.ps1
+   ```
+   **CRITICAL**: When using the `run_in_terminal` tool, you MUST set `isBackground=true` because `dotnet watch run` and `dotnet run` block indefinitely. The terminal should remain open and running throughout your development session. The app will stay open and automatically rebuild/restart when files change.
+   
+   Alternatively, you can manually start in watch mode:
    ```powershell
    cd MyWpfApp
    dotnet watch run
    ```
-   **CRITICAL**: When using the `run_in_terminal` tool, you MUST set `isBackground=true` because `dotnet watch run` and `dotnet run` block indefinitely. The terminal should remain open and running throughout your development session. The app will stay open and automatically rebuild/restart when files change.
 
 2. **Make changes** to XAML or C# files (in your editor, not the terminal)
 
-3. **Restart and capture results** using the skills (from a different terminal):
-   - `.\.github\skills\restart\restart-app.ps1` - Restart the app to apply XAML changes
-   - Wait 2-3 seconds for restart to complete
-   - `.\.github\skills\screenshot\get-screenshot.ps1` - Verify visual appearance
+3. **Restart and capture results** using the skills:
+   - `.\.github\skills\restart\restart-app.ps1` - Restart the app to apply XAML changes (now waits and verifies restart)
+   - `.\.github\skills\screenshot\get-screenshot.ps1` - Verify visual appearance (includes automatic retry)
    - `.\.github\skills\tree\get-tree.ps1` - Inspect element structure and naming
    
    **Quick iteration**: Combine commands to restart and capture in one line:
    ```powershell
-   .\.github\skills\restart\restart-app.ps1; Start-Sleep -Seconds 3; .\.github\skills\screenshot\get-screenshot.ps1
+   .\.github\skills\restart\restart-app.ps1; .\.github\skills\screenshot\get-screenshot.ps1
    ```
+   Note: No need for manual `Start-Sleep` anymore - the skills handle waiting automatically!
 
 4. **Iterate** - Make changes, restart, and capture screenshots
 
