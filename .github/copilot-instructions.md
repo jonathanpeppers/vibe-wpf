@@ -62,7 +62,7 @@ When iterating on WPF UI:
    cd MyWpfApp
    dotnet watch run
    ```
-   This terminal should remain open and running throughout your development session. The app will stay open and automatically rebuild/restart when files change.
+   **CRITICAL**: When using the `run_in_terminal` tool, you MUST set `isBackground=true` because `dotnet watch run` and `dotnet run` block indefinitely. The terminal should remain open and running throughout your development session. The app will stay open and automatically rebuild/restart when files change.
 
 2. **Make changes** to XAML or C# files (in your editor, not the terminal)
 
